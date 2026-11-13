@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  codereview-engine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: codereview-ai-linter
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=CodeReview AI
+      - DEBUG=False
+      - CODEREVIEW_DB_PATH=/app/data/codereview.db
+    volumes:
+      - codereview-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  codereview-data:
+    driver: local

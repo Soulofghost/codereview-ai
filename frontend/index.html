@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeReview AI | Automated AST Static Analysis & Security Vulnerability Reviewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="code-logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <h1>CodeReview <span>AI</span></h1>
+          <span class="sub">AST Static Analysis & Security Vulnerability Engine</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="badge-status-online"><span class="pulse-dot"></span> AST Engine Online</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Metric Ribbon -->
+  <section class="kpi-ribbon">
+    <div class="kpi-container">
+      <div class="kpi-cell">
+        <span class="kpi-label">Files Analyzed</span>
+        <span class="kpi-val" id="metric-total">--</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-label">Critical Security Flaws</span>
+        <span class="kpi-val danger" id="metric-critical">--</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-label">Average Code Quality</span>
+        <span class="kpi-val highlight" id="metric-avg">-- / 100</span>
+      </div>
+      <div class="kpi-cell">
+        <span class="kpi-label">Rule Engine Checks</span>
+        <span class="kpi-val">12 Active AST Rules</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main IDE Workspace -->
+  <main class="ide-layout">
+    <!-- Left: Code Editor Pane -->
+    <section class="editor-pane card-panel">
+      <div class="pane-header">
+        <div class="file-meta">
+          <input type="text" id="repo-name" class="header-input" value="service-backend" title="Repository Name">
+          <span class="path-divider">/</span>
+          <input type="text" id="file-name" class="header-input" value="payments.py" title="Filename">
+        </div>
+        <div class="preset-dropdown">
+          <label for="sample-select">Load Benchmark:</label>
+          <select id="sample-select" class="select-ctrl">
+            <option value="">-- Choose Benchmark --</option>
+            <option value="sql_injection">SQL Injection & Shell Execution</option>
+            <option value="aws_secret">Hardcoded AWS Secret & Insecure Pickle</option>
+            <option value="clean_code">Clean Architecture & Algorithms</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="editor-wrap">
+        <textarea id="code-editor" class="code-textarea" spellcheck="false" placeholder="Paste your Python source code here for static AST and security analysis..."></textarea>
+      </div>
+
+      <div class="editor-footer">
+        <span class="editor-info">Python 3.11 AST Parser Active</span>
+        <button id="btn-run-analysis" class="btn btn-primary">⚡ Run CodeReview AI</button>
+      </div>
+    </section>
+
+    <!-- Right: Review Report Pane -->
+    <section class="report-pane card-panel">
+      <div class="pane-header">
+        <h2>Inspection Report</h2>
+        <span id="report-timestamp" class="report-time">Awaiting execution...</span>
+      </div>
+
+      <!-- Score Ribbon -->
+      <div class="score-card" id="score-card">
+        <div class="grade-badge" id="grade-badge">--</div>
+        <div class="score-details">
+          <div class="score-row">
+            <span class="score-number" id="score-number">--</span>
+            <span class="score-sub">/ 100 Quality Score</span>
+          </div>
+          <div class="severity-pills" id="severity-pills">
+            <span class="sev-pill crit" id="pill-crit">0 Critical</span>
+            <span class="sev-pill maj" id="pill-maj">0 Major</span>
+            <span class="sev-pill min" id="pill-min">0 Minor</span>
+            <span class="sev-pill info" id="pill-info">0 Info</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Issues List -->
+      <div class="issues-container" id="issues-container">
+        <div class="empty-state">
+          <div class="empty-icon">🛡️</div>
+          <h3>Ready for Static Analysis</h3>
+          <p>Click "Run CodeReview AI" or select a benchmark above to inspect AST patterns, hardcoded secrets, and injection vulnerabilities.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
